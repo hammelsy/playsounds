@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Harmless Sounds</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<script type="text/javascript">
+	fetch('https://api.github.com/repos/hammelsy/playsounds/contents/')
+		.then(function(repsonse) {
+			return response.json();
+		})
+		.then(function(folder){
+			for (let file of folder){
+				console.log(file['path'])
+			}
+		});
+	</script>
+</body>
+</html>
