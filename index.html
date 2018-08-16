@@ -4,18 +4,50 @@
 	<title>Harmless Sounds</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-</head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.23/bootstrap-native-v4.js" integrity="sha384-hrMuTzfHqSffGMonCX/bmL73w9OsyvefG5kGXX+Io31bunLWO+8M5og4Bqv9mFB4" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+></head>
 <body>
 	<script type="text/javascript">
-	fetch('https://api.github.com/repos/hammelsy/playsounds/contents/')
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(folder){
-			for (let file of folder){
-				console.log(file['path'])
-			}
-		});
+	function createRow(file){
+		let tr = document.createElement('tr')
+		tr.innerHTML = `
+		<td>${file}</td>
+		<td><audio controls=""><source src="https://hammelsy.github.io/playsounds/audio/${file}" type="audio/mp3"/></audio></td>
+		<td>Unifinished Feature</td>
+		`
+		return tr
+	}
+	document.addEventListener("DOMContentLoaded", function(event) {
+		let tbody = document.getElementById('tables').tBodies[0]
+		fetch('https://api.github.com/repos/hammelsy/playsounds/contents/audio')
+			.then(function(response) {
+				return response.json();
+			})
+			.then(function(folder){
+				for (let file of folder){
+					console.log(file['name'])
+					tbody.appendChild(createRow(file['name']))
+				}
+			});
+	});
 	</script>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12"><h4>Harmless_ Sounds</h4>
+			<div class="table-responsive">
+				<table id="tables" class="table table-bordered table-striped">
+					<thead>
+						<th>Code</th>
+						<th>Preview</th>
+						<th></th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+
+		</div>
+	</div>
 </body>
 </html>
