@@ -16,7 +16,7 @@
 		tr.innerHTML = `
 		<td>#${file.slice(0,-4)}</td>
 		<td><audio controls=""><source src="https://hammelsy.github.io/playsounds/audio/${file}" type="audio/mp3"/></audio></td>
-		<td><button class="btn" data-clipboard-text="#${file}">Copy to Clipboard</button></td>
+		<td><button class="btn" data-clipboard-text="#${file.slice(0,-4)}">Copy to Clipboard</button></td>
 		`
 		return tr
 	}
